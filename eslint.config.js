@@ -37,6 +37,7 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...vitest.configs.recommended.rules,
+      "react-hooks/exhaustive-deps": 0
     },
   },
 )

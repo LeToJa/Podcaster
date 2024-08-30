@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavigationHeader > renders correctly and matches snapshot 1`] = `
+<div>
+  <nav
+    class="flex justify-between mb-10"
+  >
+    <a
+      class="font-bold text-xl text-sky-600"
+      href="/"
+    >
+      Podcaster
+    </a>
+  </nav>
+</div>
+`;

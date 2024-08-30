@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 
+import { useApp } from '../../context/AppContext'
+
 import { getPodcastList } from '../../helpers/ItunesAPI'
 
 import PodcastCard from '../../components/PodcastCard'
 import { PocastCardTypes } from '../../components/PodcastCard/types'
 
 const Home = () => {
+    const { loading, toggleLoading } = useApp()
+
     const [filter, setFilter] = useState<string>('')
     const [podcasts, setPodcasts] = useState<PocastCardTypes[] | undefined>([])
 
@@ -13,9 +17,11 @@ const Home = () => {
         const fetchPodcasts = async () => {
             const content = await getPodcastList()
 
+            toggleLoading(false)
             setPodcasts(content)
         }
 
+        toggleLoading(true)
         fetchPodcasts().catch(err => console.error(err))
     }, [])
 
@@ -25,14 +31,14 @@ const Home = () => {
         podcasts.author.toLowerCase().includes(filter.toLowerCase())
     )
 
-    return <>
-        <form className='flex justify-center my-6'>
+    if (!loading) return <>
+        <form className='flex justify-center mb-6'>
             <input
                 type='text'
                 placeholder='Search podcasts'
                 name='filter-podcasts'
                 id='filter-podcasts'
-                className='bg-gray-100 px-4 py-3 rounded shadow-md'
+                className='bg-gray-100 px-4 py-3 rounded shadow-md outline-sky-600'
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
             />

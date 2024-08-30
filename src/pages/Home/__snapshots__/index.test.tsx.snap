@@ -3,10 +3,10 @@
 exports[`Home > renders correctly and matches snapshot 1`] = `
 <div>
   <form
-    class="flex justify-center my-6"
+    class="flex justify-center mb-6"
   >
     <input
-      class="bg-gray-100 px-4 py-3 rounded shadow-md"
+      class="bg-gray-100 px-4 py-3 rounded shadow-md outline-sky-600"
       id="filter-podcasts"
       name="filter-podcasts"
       placeholder="Search podcasts"
