@@ -1,0 +1,116 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EpisodeList > renders correctly with episodes (snapshot) 1`] = `
+<div>
+  <figure
+    class="shadow-xl p-4 mb-6"
+  >
+    <h4
+      class="text-xl"
+    >
+      2
+       episodes
+    </h4>
+  </figure>
+  <figure
+    class="shadow-xl p-4"
+  >
+    <table
+      class="w-full table-auto"
+    >
+      <thead>
+        <tr>
+          <th>
+            Title
+          </th>
+          <th>
+            Date
+          </th>
+          <th>
+            Duration
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Episode 1
+          </td>
+          <td>
+            2023-08-29
+          </td>
+          <td>
+            30:00
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Episode 2
+          </td>
+          <td>
+            2023-08-28
+          </td>
+          <td>
+            45:00
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </figure>
+</div>
+`;
+
+exports[`EpisodeList > renders correctly with no RSS (snapshot) 1`] = `
+<div>
+  <section
+    class="shadow-xl p-4"
+  >
+    This podcast doesn't use RSS :(
+  </section>
+</div>
+`;
+
+exports[`EpisodeList > renders correctly with no episodes (snapshot) 1`] = `
+<div>
+  <figure
+    class="shadow-xl p-4 mb-6"
+  >
+    <h4
+      class="text-xl"
+    >
+      0
+       episodes
+    </h4>
+  </figure>
+  <figure
+    class="shadow-xl p-4"
+  >
+    <table
+      class="w-full table-auto"
+    >
+      <thead>
+        <tr>
+          <th>
+            Title
+          </th>
+          <th>
+            Date
+          </th>
+          <th>
+            Duration
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            colspan="3"
+          >
+            No episodes :(
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </figure>
+</div>
+`;

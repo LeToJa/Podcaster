@@ -5,14 +5,14 @@ exports[`AppLayout > renders correctly and matches snapshot 1`] = `
   <main
     class="max-w-screen-xl mx-auto"
   >
-    <div>
+    <figure>
       NavigationHeader
-    </div>
-    <div
+    </figure>
+    <figure
       data-testid="outlet"
     >
       Outlet Component
-    </div>
+    </figure>
   </main>
 </div>
 `;

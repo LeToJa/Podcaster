@@ -1,5 +1,7 @@
 export interface EpisodeCardTypes {
     podcastId: string
-    episodeId: string
-    name: string
+    episodeId: number
+    title: string
+    date: string
+    duration: string
 }

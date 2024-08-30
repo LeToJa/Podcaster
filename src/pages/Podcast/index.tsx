@@ -1,28 +1,55 @@
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { useApp } from '../../context/AppContext'
+
+import { getPodcastInfo } from '../../helpers/ItunesAPI'
+
 import PodcastLayout from '../../layout/PodcastLayout'
-import EpisodeCard from '../../components/EpisodeCard'
+import EpisodeList from '../../components/EpisodeList'
+
+import { PodcastAsideTypes } from '../../layout/PodcastLayout/types'
+import { RSSResponse } from '../../helpers/RSSParser/types'
 
 const Podcast = () => {
     const { podcastId } = useParams()
+    const { loading, toggleLoading } = useApp()
+    const [aside, setAside] = useState<PodcastAsideTypes | false>(false)
+    const [episodes, setEpisodes] = useState<RSSResponse[] | false>(false)
 
-    const asideProps = {
-        name: `Podcast ${podcastId}`
-    }
+    useEffect(() => {
+        const fetchPodcasts = async () => {
+            const content = await getPodcastInfo(String(podcastId))
 
-    return <>
-        <PodcastLayout aside={asideProps}>
-            <ul>
-                <li>
-                    <EpisodeCard podcastId={`${podcastId}`} episodeId='1' name='Episode 1' />
-                </li>
-                <li>
-                    <EpisodeCard podcastId={`${podcastId}`} episodeId='2' name='Episode 2' />
-                </li>
-                <li>
-                    <EpisodeCard podcastId={`${podcastId}`} episodeId='3' name='Episode 3' />
-                </li>
-            </ul>
+            if (!content) {
+                setAside(false)
+                toggleLoading(false)
+                return
+            }
+
+            setAside({
+                id: content.id,
+                title: content.title,
+                author: content.author,
+                artwork: content.artwork,
+                description: content.description,
+            })
+            setEpisodes(content.episodes)
+
+            toggleLoading(false)
+        }
+
+        toggleLoading(true)
+        fetchPodcasts().catch(err => console.error(err))
+    }, [podcastId])
+
+    if (loading) return
+
+    if (!aside) return <section className='shadow-xl p-4'>This podcast doesn&apos;t work</section>
+
+    if (aside) return <>
+        <PodcastLayout aside={aside}>
+            <EpisodeList podcastId={podcastId!} episodes={episodes} />
         </PodcastLayout>
     </>
 }

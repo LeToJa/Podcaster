@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PodcastLayout > renders correctly and matches snapshot 1`] = `
+<div>
+  <section
+    class="grid grid-cols-7 gap-12"
+  >
+    <aside
+      class="col-span-2"
+    >
+      <figure
+        class="block shadow-xl p-4"
+      >
+        <img
+          alt="Sample Podcast"
+          class="w-4/5 mx-auto rounded-full"
+          src="https://via.placeholder.com/150"
+        />
+        <header
+          class="p-4"
+        >
+          <a
+            href="/podcast/123"
+          >
+            <h4
+              class="font-bold text-xl mb-2"
+            >
+              Sample Podcast
+            </h4>
+            <h6
+              class="text-gray-700 text-base"
+            >
+              John Doe
+            </h6>
+          </a>
+        </header>
+        <blockquote
+          class="text-sm"
+        >
+          <h5
+            class="font-bold text-lg mb-2"
+          >
+            Description
+          </h5>
+          <p>
+            This is a 
+            <strong>
+              sample
+            </strong>
+             podcast description.
+          </p>
+        </blockquote>
+      </figure>
+    </aside>
+    <article
+      class="col-span-5"
+    >
+      <figure>
+        Podcast Episode List
+      </figure>
+    </article>
+  </section>
+</div>
+`;

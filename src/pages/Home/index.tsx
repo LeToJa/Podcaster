@@ -5,6 +5,7 @@ import { useApp } from '../../context/AppContext'
 import { getPodcastList } from '../../helpers/ItunesAPI'
 
 import PodcastCard from '../../components/PodcastCard'
+
 import { PocastCardTypes } from '../../components/PodcastCard/types'
 
 const Home = () => {
@@ -17,8 +18,8 @@ const Home = () => {
         const fetchPodcasts = async () => {
             const content = await getPodcastList()
 
-            toggleLoading(false)
             setPodcasts(content)
+            toggleLoading(false)
         }
 
         toggleLoading(true)
@@ -47,7 +48,7 @@ const Home = () => {
             {
                 filteredPodcasts?.length ?
                     filteredPodcasts?.map((podcast, key) => <PodcastCard key={key} {...podcast} />) :
-                    <div className='col-span-5 font-bold text-xl text-gray-700 text-center'>No podcasts :(</div>
+                    <section className='col-span-5 font-bold text-xl text-gray-700 text-center'>No podcasts :(</section>
             }
         </section>
     </>

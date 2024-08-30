@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EpisodeCard > renders correctly and matches snapshot 1`] = `
+<div>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <a
+            class="font-bold text-sky-600"
+            href="/podcast/123/episode/456"
+          >
+            Sample Episode
+          </a>
+        </td>
+        <td
+          class="text-center"
+        >
+          2024-08-30
+        </td>
+        <td
+          class="text-center"
+        >
+          45:30
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

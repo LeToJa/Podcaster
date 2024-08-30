@@ -5,11 +5,11 @@ import AppLayout from '.'
 
 vi.mock('react-router-dom', () => ({
     ...vi.importActual,
-    Outlet: () => <div data-testid="outlet">Outlet Component</div>,
+    Outlet: () => <figure data-testid="outlet">Outlet Component</figure>,
 }))
 
 vi.mock('../NavigationHeader', () => ({
-    default: () => <div>NavigationHeader</div>,
+    default: () => <figure>NavigationHeader</figure>,
 }))
 
 describe('AppLayout', () => {

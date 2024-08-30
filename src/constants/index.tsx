@@ -1,0 +1,1 @@
+export const MAXIMUM_EPISODES_PODCAST = 100

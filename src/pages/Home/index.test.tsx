@@ -1,5 +1,5 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { BrowserRouter } from 'react-router-dom'
 
 import { AppContext } from '../../context/AppContext/context'
@@ -13,7 +13,7 @@ vi.mock('../../helpers/ItunesAPI', () => ({
     getPodcastList: vi.fn(),
 }))
 
-const MockAppContext = {
+const mockAppContext = {
     loading: false,
     toggleLoading: vi.fn()
 }
@@ -41,21 +41,21 @@ const mockPodcasts = [
     },
 ]
 
+const mockGetPodcastList = vi.mocked(getPodcastList)
+
 describe('Home', () => {
     beforeEach(() => {
-        (getPodcastList as Mock).mockResolvedValue(mockPodcasts)
+        mockGetPodcastList.mockResolvedValue(mockPodcasts)
     })
 
-    it('renders correctly and matches snapshot', async () => {
+    it('renders correctly and matches snapshot', () => {
         const { container } = render(
             <BrowserRouter>
-                <MockAppProvider {...MockAppContext}>
+                <MockAppProvider {...mockAppContext}>
                     <Home />
                 </MockAppProvider>
             </BrowserRouter>
         )
-
-        await waitFor(() => expect(getPodcastList).toHaveBeenCalled())
 
         expect(container).toMatchSnapshot()
     })
@@ -63,7 +63,7 @@ describe('Home', () => {
     it('displays podcasts after fetch', async () => {
         const { getByText } = render(
             <BrowserRouter>
-                <MockAppProvider {...MockAppContext}>
+                <MockAppProvider {...mockAppContext}>
                     <Home />
                 </MockAppProvider>
             </BrowserRouter>
@@ -78,7 +78,7 @@ describe('Home', () => {
     it('filters podcasts based on user input', async () => {
         const { getByText, queryByText } = render(
             <BrowserRouter>
-                <MockAppProvider {...MockAppContext}>
+                <MockAppProvider {...mockAppContext}>
                     <Home />
                 </MockAppProvider>
             </BrowserRouter>
@@ -100,7 +100,7 @@ describe('Home', () => {
     it('displays "No podcasts :(" when no podcasts match the filter', async () => {
         const { getByText, getByPlaceholderText } = render(
             <BrowserRouter>
-                <MockAppProvider {...MockAppContext}>
+                <MockAppProvider {...mockAppContext}>
                     <Home />
                 </MockAppProvider>
             </BrowserRouter>
@@ -119,11 +119,11 @@ describe('Home', () => {
     })
 
     it('displays "No podcasts :(" when the API returns no podcasts', async () => {
-        (getPodcastList as Mock).mockResolvedValue([])
+        mockGetPodcastList.mockResolvedValue([])
 
         const { getByText } = render(
             <BrowserRouter>
-                <MockAppProvider {...MockAppContext}>
+                <MockAppProvider {...mockAppContext}>
                     <Home />
                 </MockAppProvider>
             </BrowserRouter>

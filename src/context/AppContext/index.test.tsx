@@ -8,10 +8,10 @@ const TestComponent = () => {
     const { loading, toggleLoading } = useApp()
 
     return (
-        <div>
+        <figure>
             <p>Loading: {loading.toString()}</p>
             <button onClick={() => toggleLoading(false)}>Toggle Loading</button>
-        </div>
+        </figure>
     )
 }
 
