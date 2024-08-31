@@ -2,14 +2,16 @@ import { render } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import { BrowserRouter } from 'react-router-dom'
 
+import { EpisodeCardTypes } from './types'
+
 import EpisodeCard from '.'
 
-const mockProps = {
+const mockEpisode: EpisodeCardTypes = {
     podcastId: '123',
     episodeId: 456,
     title: 'Sample Episode',
     date: '2024-08-30',
-    duration: '45:30',
+    duration: '45:30'
 }
 
 describe('EpisodeCard', () => {
@@ -18,7 +20,7 @@ describe('EpisodeCard', () => {
             <BrowserRouter>
                 <table>
                     <tbody>
-                        <EpisodeCard {...mockProps} />
+                        <EpisodeCard {...mockEpisode} />
                     </tbody>
                 </table>
             </BrowserRouter>
@@ -32,7 +34,7 @@ describe('EpisodeCard', () => {
             <BrowserRouter>
                 <table>
                     <tbody>
-                        <EpisodeCard {...mockProps} />
+                        <EpisodeCard {...mockEpisode} />
                     </tbody>
                 </table>
             </BrowserRouter>

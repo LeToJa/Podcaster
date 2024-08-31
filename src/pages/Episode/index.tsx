@@ -8,14 +8,13 @@ import { getPodcastInfo } from '../../helpers/ItunesAPI'
 import PodcastLayout from '../../layout/PodcastLayout'
 import EpisodePanel from '../../components/EpisodePanel'
 
-import { PodcastAsideTypes } from '../../layout/PodcastLayout/types'
-import { RSSResponse } from '../../helpers/RSSParser/types'
+import { PodcastAsideTypes, PodcastEpisode } from '../../layout/PodcastLayout/types'
 
 const Episode = () => {
     const { podcastId, episodeId } = useParams()
     const { loading, toggleLoading } = useApp()
     const [aside, setAside] = useState<PodcastAsideTypes | false>(false)
-    const [episode, setEpisode] = useState<RSSResponse | false>(false)
+    const [episode, setEpisode] = useState<PodcastEpisode | false>(false)
 
     useEffect(() => {
         const fetchPodcasts = async () => {
@@ -51,7 +50,7 @@ const Episode = () => {
 
     if (loading) return
 
-    if (!aside || !episode) return <section className='shadow-xl p-4'>This episode doesn&apos;t work</section>
+    if (!aside || !episode) return <section className='bg-gray-50 border-2 border-gray-200 shadow-xl p-4' data-testid='error-message'>This episode doesn&apos;t work</section>
 
     return <>
         <PodcastLayout aside={aside}>

@@ -1,0 +1,5 @@
+export const DEFAULT_PODCAST_NAME = 'The Joe Bud'
+
+export const DEFAULT_PODCAST_ID = 1460157002
+
+export const DEFAULT_PODCAST_EPISODE_ID = 0

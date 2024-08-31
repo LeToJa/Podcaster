@@ -1,4 +1,3 @@
-import { RSSResponse } from '../../helpers/RSSParser/types'
 import { ReactElementWithChildrenTypes } from '../../types'
 
 export interface PodcastLayoutTypes extends ReactElementWithChildrenTypes {
@@ -13,6 +12,15 @@ export interface PodcastAsideTypes {
     description: string
 }
 
+export interface PodcastEpisode {
+    title: string
+    content: string
+    date: string
+    url: string
+    type: string
+    duration: string
+}
+
 export interface PodcastItemsTypes extends PodcastAsideTypes {
-    episodes: RSSResponse[] | false
+    episodes: PodcastEpisode[]
 }

@@ -1,6 +1,8 @@
 import { render } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
+import { PodcastEpisode } from '../../layout/PodcastLayout/types'
+
 import EpisodeList from '.'
 
 vi.mock('../EpisodeCard', () => ({
@@ -13,30 +15,22 @@ vi.mock('../EpisodeCard', () => ({
     ),
 }))
 
-const mockEpisodes = [
+const mockEpisodes: PodcastEpisode[] = [
     {
         title: 'Episode 1',
         content: '<p>Episode content in HTML format</p>',
-        isoDate: '2023-08-29',
-        enclosure: {
-            url: 'http://example.com/audio.mp3',
-            type: 'audio/mpeg',
-        },
-        itunes: {
-            duration: '30:00'
-        }
+        date: '2023-08-29',
+        url: 'http://example.com/audio.mp3',
+        type: 'audio/mpeg',
+        duration: '30:00'
     },
     {
         title: 'Episode 2',
         content: '<p>Episode content in HTML format</p>',
-        isoDate: '2023-08-28',
-        enclosure: {
-            url: 'http://example.com/audio.mp3',
-            type: 'audio/mpeg',
-        },
-        itunes: {
-            duration: '45:00'
-        }
+        date: '2023-08-28',
+        url: 'http://example.com/audio.mp3',
+        type: 'audio/mpeg',
+        duration: '45:00'
     }
 ]
 
@@ -53,12 +47,6 @@ describe('EpisodeList', () => {
         expect(container).toMatchSnapshot()
     })
 
-    it('renders correctly with no RSS (snapshot)', () => {
-        const { container } = render(<EpisodeList podcastId='123' episodes={false} />)
-
-        expect(container).toMatchSnapshot()
-    })
-
     it('displays the correct number of episodes', () => {
         const { getByText } = render(<EpisodeList podcastId='123' episodes={mockEpisodes} />)
 
@@ -69,12 +57,6 @@ describe('EpisodeList', () => {
         const { getByText } = render(<EpisodeList podcastId='123' episodes={[]} />)
 
         expect(getByText(/No episodes :\(/i)).toBeTruthy()
-    })
-
-    it('renders "This Podcast doesnt use RSS :(" when there are no episodes', () => {
-        const { getByText } = render(<EpisodeList podcastId='123' episodes={false} />)
-
-        expect(getByText(/This Podcast doesn't use RSS :\(/i)).toBeTruthy()
     })
 
     it('renders the episode details correctly', () => {

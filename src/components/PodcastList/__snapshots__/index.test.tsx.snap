@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Home > renders correctly and matches snapshot 1`] = `
+<div>
+  <form
+    class="flex justify-end items-center gap-4 mb-6"
+    data-testid="app-form"
+  >
+    <label
+      class="px-1 bg-sky-600 text-white font-bold rounded-lg"
+      data-testid="form-label"
+    >
+      2
+    </label>
+    <input
+      class="bg-gray-100 px-4 py-3 rounded shadow-md outline-sky-600"
+      data-testid="form-input"
+      id="filter-podcasts"
+      name="filter-podcasts"
+      placeholder="Search podcasts"
+      type="text"
+      value=""
+    />
+  </form>
+  <section
+    class="grid grid-cols-5 gap-4"
+  >
+    <a
+      class="block bg-gray-50 border-2 border-gray-200 shadow-xl px-2 py-4"
+      data-testid="podcast-card"
+      href="/podcast/1"
+    >
+      <img
+        alt="Podcast One"
+        class="w-2/5 mx-auto rounded-full"
+        src="https://via.placeholder.com/150"
+      />
+      <header
+        class="px-6 py-4"
+      >
+        <h4
+          class="font-bold text-xl mb-2 text-center whitespace-nowrap text-ellipsis overflow-hidden"
+        >
+          Podcast One
+        </h4>
+        <h6
+          class="text-gray-700 text-base text-center whitespace-nowrap text-ellipsis overflow-hidden"
+        >
+          Author One
+        </h6>
+      </header>
+    </a>
+    <a
+      class="block bg-gray-50 border-2 border-gray-200 shadow-xl px-2 py-4"
+      data-testid="podcast-card"
+      href="/podcast/2"
+    >
+      <img
+        alt="Podcast Two"
+        class="w-2/5 mx-auto rounded-full"
+        src="https://via.placeholder.com/150"
+      />
+      <header
+        class="px-6 py-4"
+      >
+        <h4
+          class="font-bold text-xl mb-2 text-center whitespace-nowrap text-ellipsis overflow-hidden"
+        >
+          Podcast Two
+        </h4>
+        <h6
+          class="text-gray-700 text-base text-center whitespace-nowrap text-ellipsis overflow-hidden"
+        >
+          Author Two
+        </h6>
+      </header>
+    </a>
+  </section>
+</div>
+`;

@@ -9,7 +9,8 @@ exports[`PodcastLayout > renders correctly and matches snapshot 1`] = `
       class="col-span-2"
     >
       <figure
-        class="block shadow-xl p-4"
+        class="bg-gray-50 border-2 border-gray-200 shadow-xl p-4"
+        data-testid="podcast-aside"
       >
         <img
           alt="Sample Podcast"
@@ -54,6 +55,7 @@ exports[`PodcastLayout > renders correctly and matches snapshot 1`] = `
     </aside>
     <article
       class="col-span-5"
+      data-testid="podcast-main"
     >
       <figure>
         Podcast Episode List

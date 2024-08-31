@@ -3,7 +3,8 @@
 exports[`PodcastCard > renders correctly and matches snapshot 1`] = `
 <div>
   <a
-    class="block shadow-xl px-2 py-4"
+    class="block bg-gray-50 border-2 border-gray-200 shadow-xl px-2 py-4"
+    data-testid="podcast-card"
     href="/podcast/123"
   >
     <img

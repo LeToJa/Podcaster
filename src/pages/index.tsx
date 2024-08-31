@@ -1,9 +1,9 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 
-import AppLayout from './layout/AppLayout'
-import Home from './pages/Home'
-import Podcast from './pages/Podcast'
-import Episode from './pages/Episode'
+import AppLayout from '../layout/AppLayout'
+import Home from './Home'
+import Podcast from './Podcast'
+import Episode from './Episode'
 
 const router = createBrowserRouter(
     createRoutesFromElements(

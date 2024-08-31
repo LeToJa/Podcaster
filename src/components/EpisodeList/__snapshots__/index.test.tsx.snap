@@ -3,7 +3,8 @@
 exports[`EpisodeList > renders correctly with episodes (snapshot) 1`] = `
 <div>
   <figure
-    class="shadow-xl p-4 mb-6"
+    class="bg-gray-50 border-2 border-gray-200 shadow-xl p-4 mb-6"
+    data-testid="podcast-count"
   >
     <h4
       class="text-xl"
@@ -13,14 +14,17 @@ exports[`EpisodeList > renders correctly with episodes (snapshot) 1`] = `
     </h4>
   </figure>
   <figure
-    class="shadow-xl p-4"
+    class="bg-gray-50 border-2 border-gray-200 shadow-xl p-4"
+    data-testid="podcast-episodes"
   >
     <table
-      class="w-full table-auto"
+      class="w-full table-fixed"
     >
       <thead>
         <tr>
-          <th>
+          <th
+            colspan="8"
+          >
             Title
           </th>
           <th>
@@ -60,20 +64,11 @@ exports[`EpisodeList > renders correctly with episodes (snapshot) 1`] = `
 </div>
 `;
 
-exports[`EpisodeList > renders correctly with no RSS (snapshot) 1`] = `
-<div>
-  <section
-    class="shadow-xl p-4"
-  >
-    This podcast doesn't use RSS :(
-  </section>
-</div>
-`;
-
 exports[`EpisodeList > renders correctly with no episodes (snapshot) 1`] = `
 <div>
   <figure
-    class="shadow-xl p-4 mb-6"
+    class="bg-gray-50 border-2 border-gray-200 shadow-xl p-4 mb-6"
+    data-testid="podcast-count"
   >
     <h4
       class="text-xl"
@@ -83,14 +78,17 @@ exports[`EpisodeList > renders correctly with no episodes (snapshot) 1`] = `
     </h4>
   </figure>
   <figure
-    class="shadow-xl p-4"
+    class="bg-gray-50 border-2 border-gray-200 shadow-xl p-4"
+    data-testid="podcast-episodes"
   >
     <table
-      class="w-full table-auto"
+      class="w-full table-fixed"
     >
       <thead>
         <tr>
-          <th>
+          <th
+            colspan="8"
+          >
             Title
           </th>
           <th>
@@ -102,7 +100,9 @@ exports[`EpisodeList > renders correctly with no episodes (snapshot) 1`] = `
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr
+          data-testid="app-message"
+        >
           <td
             colspan="3"
           >

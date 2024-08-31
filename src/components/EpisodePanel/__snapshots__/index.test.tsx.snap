@@ -3,13 +3,15 @@
 exports[`EpisodePanel > renders correctly and matches snapshot 1`] = `
 <div>
   <div
-    class="shadow-xl p-4"
+    class="bg-gray-50 border-2 border-gray-200 shadow-xl p-4"
   >
     <blockquote
       class="text-sm"
+      data-testid="episode-description"
     >
       <h2
         class="font-bold text-3xl mb-4"
+        data-testid="episode-title"
       >
         Test Episode
       </h2>

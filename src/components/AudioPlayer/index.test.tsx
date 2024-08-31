@@ -1,11 +1,13 @@
 import { render } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
+import { AudioPlayerTypes } from './types'
+
 import AudioPlayer from '.'
 
-const mockProps = {
+const mockProps: AudioPlayerTypes = {
     url: 'http://example.com/audio.mp3',
-    type: 'audio/mpeg',
+    type: 'audio/mpeg'
 }
 
 describe('AudioPlayer', () => {

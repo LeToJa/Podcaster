@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { PocastCardTypes } from './types'
 
 const PodcastCard = ({ id, title, author, artwork }: PocastCardTypes) => <>
-    <Link to={`/podcast/${id}`} className='block shadow-xl px-2 py-4'>
+    <Link to={`/podcast/${id}`} className='block bg-gray-50 border-2 border-gray-200 shadow-xl px-2 py-4' data-testid='podcast-card'>
         <img className='w-2/5 mx-auto rounded-full' src={artwork} alt={title} />
         <header className='px-6 py-4'>
             <h4 className='font-bold text-xl mb-2 text-center whitespace-nowrap text-ellipsis overflow-hidden'>{title}</h4>

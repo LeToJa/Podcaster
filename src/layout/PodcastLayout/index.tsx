@@ -6,7 +6,7 @@ import { PodcastLayoutTypes } from './types'
 const PodcastLayout = ({ children, aside: { id, title, author, artwork, description } }: PodcastLayoutTypes) => <>
     <section className='grid grid-cols-7 gap-12'>
         <aside className='col-span-2'>
-            <figure className='block shadow-xl p-4'>
+            <figure className='bg-gray-50 border-2 border-gray-200 shadow-xl p-4' data-testid='podcast-aside'>
                 <img className='w-4/5 mx-auto rounded-full' src={artwork} alt={title} />
                 <header className='p-4'>
                     <Link to={`/podcast/${id}`}>
@@ -20,7 +20,7 @@ const PodcastLayout = ({ children, aside: { id, title, author, artwork, descript
                 </blockquote>
             </figure>
         </aside>
-        <article className='col-span-5'>
+        <article className='col-span-5' data-testid='podcast-main'>
             {children}
         </article>
     </section>

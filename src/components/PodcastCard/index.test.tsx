@@ -2,9 +2,11 @@ import { BrowserRouter } from 'react-router-dom'
 import { render } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
+import { PocastCardTypes } from './types'
+
 import PodcastCard from '.'
 
-const mockProps = {
+const mockProps: PocastCardTypes = {
     id: '123',
     title: 'Sample Podcast',
     author: 'John Doe',

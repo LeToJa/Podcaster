@@ -3,17 +3,15 @@ import EpisodeCard from '../EpisodeCard'
 import { EpisodeListTypes } from './types'
 
 const EpisodeList = ({ podcastId, episodes }: EpisodeListTypes) => {
-    if (episodes === false) return <section className='shadow-xl p-4'>This podcast doesn&apos;t use RSS :(</section>
-
     return <>
-        <figure className='shadow-xl p-4 mb-6'>
+        <figure className='bg-gray-50 border-2 border-gray-200 shadow-xl p-4 mb-6' data-testid='podcast-count'>
             <h4 className='text-xl'>{episodes.length} episodes</h4>
         </figure>
-        <figure className='shadow-xl p-4'>
-            <table className='w-full table-auto'>
+        <figure className='bg-gray-50 border-2 border-gray-200 shadow-xl p-4' data-testid='podcast-episodes'>
+            <table className='w-full table-fixed'>
                 <thead>
                     <tr>
-                        <th>Title</th>
+                        <th colSpan={8}>Title</th>
                         <th>Date</th>
                         <th>Duration</th>
                     </tr>
@@ -21,8 +19,8 @@ const EpisodeList = ({ podcastId, episodes }: EpisodeListTypes) => {
                 <tbody>
                     {
                         episodes.length ?
-                            episodes.map((episode, key) => <EpisodeCard key={key} podcastId={`${podcastId}`} episodeId={key} title={episode.title} date={episode.isoDate.substring(0, 10)} duration={episode.itunes.duration} />) :
-                            <tr>
+                            episodes.map((episode, key) => <EpisodeCard key={key} podcastId={`${podcastId}`} episodeId={key} title={episode.title} date={episode.date} duration={episode.duration} />) :
+                            <tr data-testid='app-message'>
                                 <td colSpan={3}>No episodes :(</td>
                             </tr>
                     }

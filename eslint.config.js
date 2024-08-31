@@ -7,9 +7,15 @@ import tseslint from 'typescript-eslint'
 import vitest from '@vitest/eslint-plugin'
 
 export default tseslint.config(
-  { ignores: ['dist'] },
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommendedTypeChecked, ...tseslint.configs.stylisticTypeChecked],
+    ignores: ['cypress/support/**', 'dist/**', 'node_modules/**', "coverage/**"]
+  },
+  {
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked
+    ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -26,7 +32,7 @@ export default tseslint.config(
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       react,
-      vitest,
+      vitest
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -37,7 +43,7 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...vitest.configs.recommended.rules,
-      "react-hooks/exhaustive-deps": 0
-    },
+      "react-hooks/exhaustive-deps": 0,
+    }
   },
 )

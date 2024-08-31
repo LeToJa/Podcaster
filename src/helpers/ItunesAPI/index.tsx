@@ -1,68 +1,86 @@
 import { getCache, setCache } from '../ManageCache'
-import { parseURL } from '../RSSParser'
+
+import { millisecondsToHMS } from '..'
+
+import { MAXIMUM_EPISODES_PODCAST } from '../../constants'
 
 import { PocastCardTypes } from '../../components/PodcastCard/types'
-import { PodcastItemsTypes } from '../../layout/PodcastLayout/types'
-import { DefaultResponseFetch, FeedResponseTypes, PodcastResponseTypes } from './types'
-import { MAXIMUM_EPISODES_PODCAST } from '../../constants'
+import { PodcastEpisode, PodcastItemsTypes } from '../../layout/PodcastLayout/types'
+import { DefaultResponseFetchTypes, FeedResponseTypes, PodcastResponseTypes } from './types'
 
 export const getPodcastList = async (): Promise<PocastCardTypes[] | undefined> => {
     try {
-        const podcasts = getCache('PodcastList', 1)
+        const podcastsListStored = getCache('PodcastList', 1)
 
-        if (podcasts !== false) {
-            return podcasts as PocastCardTypes[]
+        if (podcastsListStored !== false) {
+            return podcastsListStored as PocastCardTypes[]
         }
 
-        const response = await fetch('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json')
+        const podcastsList = await fetch('https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json')
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
+        if (!podcastsList.ok) {
+            throw new Error('HTTP error! status: ' + podcastsList.status)
         }
 
-        const data = await response.json() as FeedResponseTypes
+        const data = await podcastsList.json() as FeedResponseTypes
 
-        const prossesedData = data.feed.entry.map(item => ({
+        const podcastsListProcessed = data.feed.entry.map(item => ({
             id: item.id.attributes['im:id'],
             title: item['im:name'].label,
             author: item['im:artist'].label,
             artwork: item['im:image'][2].label,
         }))
 
-        setCache('PodcastList', prossesedData)
+        setCache('PodcastList', podcastsListProcessed)
 
-        return prossesedData
+        return podcastsListProcessed
     } catch (err) {
         console.error((err as Error).message)
     }
 }
 
-export const getPodcastInfo = async (podcastId: string): Promise<PodcastItemsTypes | false> => {
+export const getPodcastInfo = async (podcastId: string): Promise<PodcastItemsTypes | undefined> => {
     try {
-        const podcast = getCache('PodcastInfo_' + podcastId, .25)
+        const podcastStored = getCache('PodcastInfo_' + podcastId, .25)
 
-        if (podcast !== false) {
-            return podcast as PodcastItemsTypes
+        if (podcastStored !== false) {
+            return podcastStored as PodcastItemsTypes
         }
 
-        const response = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://itunes.apple.com/lookup?id=' + podcastId))
+        const podcast = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://itunes.apple.com/lookup?id=' + podcastId + '&country=US&media=podcast&entity=podcastEpisode'))
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
+        if (!podcast.ok) {
+            throw new Error('HTTP error! status: ' + podcast.status)
         }
 
-        const data = await response.json() as DefaultResponseFetch
+        const podcastResponse = await podcast.json() as DefaultResponseFetchTypes
+        const podcastContents = podcastResponse.contents
 
-        const parsedPodcast = (JSON.parse(data.contents) as PodcastResponseTypes).results[0]
-        const feed = await parseURL(parsedPodcast.feedUrl)
+        if (podcastContents.includes('Service Unavailable')) {
+            throw new Error('AllOrigins Unavailable')
+        }
+
+        const podcastParsed = (JSON.parse(podcastContents) as PodcastResponseTypes).results
+
+        const podcastAuthor = podcastParsed[0]
+        const podcastEpisodes: PodcastEpisode[] = [
+            ...podcastParsed.slice(1, MAXIMUM_EPISODES_PODCAST).map(episode => ({
+                title: episode.trackName ?? 'Missing',
+                content: episode.description ?? 'Missing',
+                date: episode.releaseDate!.substring(0, 10) || 'Missing',
+                url: episode.episodeUrl ?? 'Missing',
+                type: typeof episode.episodeContentType === 'undefined' ? 'Missing' : episode.episodeContentType + '/' + episode.episodeFileExtension,
+                duration: typeof episode.trackTimeMillis === 'undefined' ? 'Missing' : millisecondsToHMS(episode.trackTimeMillis)
+            }))
+        ]
 
         const prossesedData = {
             id: podcastId,
-            title: parsedPodcast.collectionName,
-            author: parsedPodcast.artistName,
-            artwork: parsedPodcast.artworkUrl100,
-            description: typeof feed === 'undefined' ? parsedPodcast.trackName : feed.description,
-            episodes: typeof feed === 'undefined' ? false : feed.items.slice(0, MAXIMUM_EPISODES_PODCAST)
+            title: podcastAuthor.collectionName,
+            author: podcastAuthor.artistName,
+            artwork: podcastAuthor.artworkUrl100,
+            description: podcastAuthor.primaryGenreName + ' - ' + podcastAuthor.trackName,
+            episodes: podcastEpisodes
         }
 
         setCache('PodcastInfo_' + podcastId, prossesedData)
@@ -70,7 +88,5 @@ export const getPodcastInfo = async (podcastId: string): Promise<PodcastItemsTyp
         return prossesedData as PodcastItemsTypes
     } catch (err) {
         console.error((err as Error).message)
-
-        return false
     }
 }

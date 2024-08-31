@@ -1,11 +1,13 @@
 import { render, waitFor } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { BrowserRouter, Params } from 'react-router-dom'
+
+import { AppContext } from '../../context/AppContext/context'
+import { getPodcastInfo } from '../../helpers/ItunesAPI'
 
 import { AppContextProps } from '../../context/AppContext/types'
 import { GenericObject, ReactElementWithChildrenTypes } from '../../types'
-import { AppContext } from '../../context/AppContext/context'
-import { getPodcastInfo } from '../../helpers/ItunesAPI'
+import { PodcastItemsTypes } from '../../layout/PodcastLayout/types'
 
 import Podcast from '.'
 
@@ -35,7 +37,7 @@ const MockAppProvider = ({ loading, toggleLoading, children }: AppContextProps &
     )
 }
 
-const mockPodcast = {
+const mockPodcast: PodcastItemsTypes | false = {
     id: '123',
     title: 'Sample Podcast',
     author: 'Author Name',
@@ -45,25 +47,23 @@ const mockPodcast = {
         {
             title: 'Episode 1',
             content: '<p>Episode content in HTML format</p>',
-            isoDate: '2023-08-29T12:00:00Z',
-            enclosure: {
-                url: 'http://example.com/audio.mp3',
-                type: 'audio/mpeg',
-            },
-            itunes: {
-                duration: '30:00',
-            }
+            date: '2023-08-29T12:00:00Z',
+            url: 'http://example.com/audio.mp3',
+            type: 'audio/mpeg',
+            duration: '30:00'
         }
-    ],
+    ]
 }
 
 const mockGetPodcastInfo = vi.mocked(getPodcastInfo)
 
 describe('Podcast', () => {
-    it('renders correctly and matches snapshot', async () => {
+    beforeEach(() => {
         mockGetPodcastInfo.mockResolvedValue(mockPodcast)
+    })
 
-        const { container } = render(
+    it('renders correctly and matches snapshot', async () => {
+        const { container, getByText } = render(
             <BrowserRouter>
                 <MockAppProvider {...mockAppContext}>
                     <Podcast />
@@ -72,12 +72,14 @@ describe('Podcast', () => {
         )
 
         await waitFor(() => {
-            expect(container).toMatchSnapshot()
+            expect(getByText(/Sample Podcast/i)).toBeTruthy()
         })
+
+        expect(container).toMatchSnapshot()
     })
 
     it('renders "This Podcast doesnt work" when there is no podcast data', async () => {
-        mockGetPodcastInfo.mockResolvedValueOnce(false)
+        mockGetPodcastInfo.mockResolvedValueOnce(undefined)
 
         const { getByText } = render(
             <BrowserRouter>
@@ -93,8 +95,6 @@ describe('Podcast', () => {
     })
 
     it('renders podcast layout and episode list when there is podcast data', async () => {
-        mockGetPodcastInfo.mockResolvedValue(mockPodcast)
-
         const { getByText } = render(
             <BrowserRouter>
                 <MockAppProvider {...mockAppContext}>

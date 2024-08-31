@@ -1,22 +1,28 @@
 import { render } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import { BrowserRouter } from 'react-router-dom'
+
+import { PodcastLayoutTypes } from './types'
+
 import PodcastLayout from '.'
 
 
-const mockProps = {
-    id: '123',
-    title: 'Sample Podcast',
-    author: 'John Doe',
-    artwork: 'https://via.placeholder.com/150',
-    description: '<p>This is a <strong>sample</strong> podcast description.</p>',
+const mockProps: PodcastLayoutTypes = {
+    children: null,
+    aside: {
+        id: '123',
+        title: 'Sample Podcast',
+        author: 'John Doe',
+        artwork: 'https://via.placeholder.com/150',
+        description: '<p>This is a <strong>sample</strong> podcast description.</p>'
+    }
 }
 
 describe('PodcastLayout', () => {
     it('renders correctly and matches snapshot', () => {
         const { container } = render(
             <BrowserRouter>
-                <PodcastLayout aside={mockProps}>
+                <PodcastLayout aside={mockProps.aside}>
                     <figure>Podcast Episode List</figure>
                 </PodcastLayout>
             </BrowserRouter>
@@ -28,7 +34,7 @@ describe('PodcastLayout', () => {
     it('renders with correct content and link', () => {
         const { getByAltText, getByText } = render(
             <BrowserRouter>
-                <PodcastLayout aside={mockProps}>
+                <PodcastLayout aside={mockProps.aside}>
                     <figure>Podcast Episode List</figure>
                 </PodcastLayout>
             </BrowserRouter>

@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`millisecondsToHMS > converts milliseconds to HH:MM:SS format correctly and matches the snapshot 1`] = `"3:25:46"`;
+
+exports[`millisecondsToHMS > converts milliseconds to HH:MM:SS format correctly and matches the snapshot 2`] = `"1:00:00"`;
+
+exports[`millisecondsToHMS > converts milliseconds to HH:MM:SS format correctly and matches the snapshot 3`] = `"1:02:03"`;
+
+exports[`millisecondsToHMS > converts milliseconds to HH:MM:SS format correctly and matches the snapshot 4`] = `"0:59:59"`;
+
+exports[`millisecondsToHMS > converts milliseconds to HH:MM:SS format correctly and matches the snapshot 5`] = `"23:59:59"`;

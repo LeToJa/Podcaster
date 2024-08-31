@@ -5,7 +5,8 @@ import AppLayout from '.'
 
 vi.mock('react-router-dom', () => ({
     ...vi.importActual,
-    Outlet: () => <figure data-testid="outlet">Outlet Component</figure>,
+    ScrollRestoration: vi.fn(),
+    Outlet: () => <figure data-testid='outlet'>Outlet Component</figure>,
 }))
 
 vi.mock('../NavigationHeader', () => ({

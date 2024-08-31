@@ -1,6 +1,8 @@
 import { render } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
+import { PodcastEpisode } from '../../layout/PodcastLayout/types'
+
 import EpisodePanel from '.'
 
 vi.mock('../../components/AudioPlayer', () => ({
@@ -13,17 +15,13 @@ vi.mock('html-to-react', () => ({
     }),
 }))
 
-const mockEpisode = {
+const mockEpisode: PodcastEpisode = {
     title: 'Test Episode',
     content: '<p>Episode content in HTML format</p>',
-    isoDate: '2023-08-29T12:00:00Z',
-    enclosure: {
-        url: 'http://example.com/audio.mp3',
-        type: 'audio/mpeg',
-    },
-    itunes: {
-        duration: '30:00',
-    }
+    date: '2023-08-29T12:00:00Z',
+    url: 'http://example.com/audio.mp3',
+    type: 'audio/mpeg',
+    duration: '30:00'
 }
 
 describe('EpisodePanel', () => {
