@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EpisodePanel > renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="shadow-xl p-4"
+  >
+    <blockquote
+      class="text-sm"
+    >
+      <h2
+        class="font-bold text-3xl mb-4"
+      >
+        Test Episode
+      </h2>
+      &lt;p&gt;Episode content in HTML format&lt;/p&gt;
+    </blockquote>
+    <figure
+      class="flex justify-center mt-6"
+    >
+      <figure>
+        Audio Player Mock
+      </figure>
+    </figure>
+  </div>
+</div>
+`;

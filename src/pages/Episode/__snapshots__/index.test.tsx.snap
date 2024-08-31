@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Episode > renders correctly and matches snapshot 1`] = `
+<div>
+  <section
+    class="shadow-xl p-4"
+  >
+    This episode doesn't work
+  </section>
+</div>
+`;
