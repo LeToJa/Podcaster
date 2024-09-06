@@ -8,9 +8,10 @@
     "build": "tsc -b && vite build && vite preview",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cy:open": "cypress open",
+    "cy:panel": "cypress open",
     "cy:run": "vite --port 10101",
     "cy:e2e": "cypress run --browser chrome",
+    "cy:open": "npm-run-all --parallel cy:run cy:panel",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "cypress": "npm-run-all --parallel cy:run cy:e2e"

@@ -8,7 +8,7 @@ describe('App navigation', () => {
     cy.get('[data-testid="navbar-indicator"]').should('be.visible')
   })
 
-  it('episode works', () => {
+  it('navigation works', () => {
     cy.get('[data-testid="form-label"]').contains(100)
     cy.get('[data-testid="podcast-card"]').first().click()
     cy.get('[data-testid="navbar-indicator"]').should('be.visible')

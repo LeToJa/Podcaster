@@ -35,11 +35,6 @@ const Episode = () => {
                 description: content.description,
             })
 
-            if (!content.episodes || typeof episodeId === 'undefined') {
-                toggleLoading(false)
-                return
-            }
-
             setEpisode(content.episodes[episodeId as unknown as number])
 
             toggleLoading(false)

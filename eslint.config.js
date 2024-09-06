@@ -8,7 +8,7 @@ import vitest from '@vitest/eslint-plugin'
 
 export default tseslint.config(
   {
-    ignores: ['cypress/support/**', 'dist/**', 'node_modules/**', "coverage/**"]
+    ignores: ['cypress/**', 'dist/**', 'node_modules/**', "coverage/**"]
   },
   {
     extends: [
