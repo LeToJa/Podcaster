@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { getCache, setCache } from '.'
 
-import { CachedItem } from './types'
+import { CachedItemTypes } from './types'
 
 describe('ManageCache functions', () => {
     beforeEach(() => {
@@ -23,7 +23,7 @@ describe('ManageCache functions', () => {
                 })
             )
 
-            const result = getCache<CachedItem<unknown>>(id, 1)
+            const result = getCache<CachedItemTypes<unknown>>(id, 1)
 
             expect(result).toEqual(data)
         })
@@ -41,7 +41,7 @@ describe('ManageCache functions', () => {
                 })
             )
 
-            const result = getCache<CachedItem<unknown>>(id, 1)
+            const result = getCache<CachedItemTypes<unknown>>(id, 1)
 
             expect(result).toBe(false)
         })
@@ -75,7 +75,7 @@ describe('ManageCache functions', () => {
             setCache(id, newData)
 
             const storedItem = localStorage.getItem(id)
-            const parsedItem = JSON.parse(storedItem!) as CachedItem<unknown>
+            const parsedItem = JSON.parse(storedItem!) as CachedItemTypes<unknown>
 
             expect(parsedItem.content).toEqual(newData)
         })

@@ -5,7 +5,7 @@ import { millisecondsToHMS } from '..'
 import { MAXIMUM_EPISODES_PODCAST } from '../../constants'
 
 import { PocastCardTypes } from '../../components/PodcastCard/types'
-import { PodcastEpisode, PodcastItemsTypes } from '../../layout/PodcastLayout/types'
+import { PodcastEpisodeTypes, PodcastItemsTypes } from '../../layout/PodcastLayout/types'
 import { DefaultResponseFetchTypes, FeedResponseTypes, PodcastResponseTypes } from './types'
 
 export const getPodcastList = async (): Promise<PocastCardTypes[] | undefined> => {
@@ -63,7 +63,7 @@ export const getPodcastInfo = async (podcastId: string): Promise<PodcastItemsTyp
         const podcastParsed = (JSON.parse(podcastContents) as PodcastResponseTypes).results
 
         const podcastAuthor = podcastParsed[0]
-        const podcastEpisodes: PodcastEpisode[] = [
+        const podcastEpisodes: PodcastEpisodeTypes[] = [
             ...podcastParsed.slice(1, MAXIMUM_EPISODES_PODCAST).map(episode => ({
                 title: episode.trackName ?? 'Missing',
                 content: episode.description ?? 'Missing',

@@ -8,13 +8,13 @@ import { getPodcastInfo } from '../../helpers/ItunesAPI'
 import PodcastLayout from '../../layout/PodcastLayout'
 import EpisodePanel from '../../components/EpisodePanel'
 
-import { PodcastAsideTypes, PodcastEpisode } from '../../layout/PodcastLayout/types'
+import { PodcastAsideTypes, PodcastEpisodeTypes } from '../../layout/PodcastLayout/types'
 
 const Episode = () => {
     const { podcastId, episodeId } = useParams()
     const { loading, toggleLoading } = useApp()
     const [aside, setAside] = useState<PodcastAsideTypes | false>(false)
-    const [episode, setEpisode] = useState<PodcastEpisode | false>(false)
+    const [episode, setEpisode] = useState<PodcastEpisodeTypes | false>(false)
 
     useEffect(() => {
         const fetchPodcasts = async () => {
@@ -23,6 +23,7 @@ const Episode = () => {
             if (!content) {
                 setAside(false)
                 toggleLoading(false)
+
                 return
             }
 

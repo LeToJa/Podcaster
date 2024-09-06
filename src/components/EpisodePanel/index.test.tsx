@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { PodcastEpisode } from '../../layout/PodcastLayout/types'
+import { PodcastEpisodeTypes } from '../../layout/PodcastLayout/types'
 
 import EpisodePanel from '.'
 
@@ -15,7 +15,7 @@ vi.mock('html-to-react', () => ({
     }),
 }))
 
-const mockEpisode: PodcastEpisode = {
+const mockEpisode: PodcastEpisodeTypes = {
     title: 'Test Episode',
     content: '<p>Episode content in HTML format</p>',
     date: '2023-08-29T12:00:00Z',

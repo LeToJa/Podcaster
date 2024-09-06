@@ -4,4 +4,4 @@ To run the app, simply run the commands `npm run dev` or `npm run build` after d
 
 I should point out that the **Apple Search API** and de **AllOrigins Shortcut**, recommended for this test, are a bit unstable. So be aware.
 
-Also, I should point out that most of the **Apple Search API** has changed lately. For example, they don't provide a podcast description field on most cases.
+Also, most of the **Apple Search API** has changed lately. For example, they don't provide a podcast description field on most cases.

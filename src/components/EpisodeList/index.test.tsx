@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { PodcastEpisode } from '../../layout/PodcastLayout/types'
+import { PodcastEpisodeTypes } from '../../layout/PodcastLayout/types'
 
 import EpisodeList from '.'
 
@@ -15,7 +15,7 @@ vi.mock('../EpisodeCard', () => ({
     ),
 }))
 
-const mockEpisodes: PodcastEpisode[] = [
+const mockEpisodes: PodcastEpisodeTypes[] = [
     {
         title: 'Episode 1',
         content: '<p>Episode content in HTML format</p>',

@@ -1,6 +1,6 @@
-import { PodcastEpisode } from '../../layout/PodcastLayout/types'
+import { PodcastEpisodeTypes } from '../../layout/PodcastLayout/types'
 
 export interface EpisodeListTypes {
     podcastId: string
-    episodes: PodcastEpisode[]
+    episodes: PodcastEpisodeTypes[]
 }

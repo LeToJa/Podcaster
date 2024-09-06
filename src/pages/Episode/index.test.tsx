@@ -5,14 +5,14 @@ import { BrowserRouter, Params } from 'react-router-dom'
 import { AppContext } from '../../context/AppContext/context'
 import { getPodcastInfo } from '../../helpers/ItunesAPI'
 
-import { AppContextProps } from '../../context/AppContext/types'
-import { GenericObject, ReactElementWithChildrenTypes } from '../../types'
+import { AppContextTypes } from '../../context/AppContext/types'
+import { GenericObjectTypes, ReactElementWithChildrenTypes } from '../../types'
 import { PodcastItemsTypes } from '../../layout/PodcastLayout/types'
 
 import Episode from '.'
 
 vi.mock('react-router-dom', async (importOriginal): Promise<unknown> => {
-    const actual: GenericObject = await importOriginal()
+    const actual: GenericObjectTypes = await importOriginal()
 
     return {
         ...actual,
@@ -29,7 +29,7 @@ const mockAppContext = {
     toggleLoading: vi.fn()
 }
 
-const MockAppProvider = ({ loading, toggleLoading, children }: AppContextProps & ReactElementWithChildrenTypes) => {
+const MockAppProvider = ({ loading, toggleLoading, children }: AppContextTypes & ReactElementWithChildrenTypes) => {
     return (
         <AppContext.Provider value={{ loading, toggleLoading }}>
             {children}

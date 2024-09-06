@@ -1,4 +1,4 @@
-export interface CachedItem<T> {
+export interface CachedItemTypes<T> {
     cached_at: string
     content: T
 }

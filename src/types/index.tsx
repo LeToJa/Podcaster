@@ -4,4 +4,4 @@ export interface ReactElementWithChildrenTypes {
     children: ReactNode
 }
 
-export type GenericObject<T = unknown> = Record<string, T>
+export type GenericObjectTypes<T = unknown> = Record<string, T>

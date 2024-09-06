@@ -1,11 +1,11 @@
-import { CachedItem } from './types'
+import { CachedItemTypes } from './types'
 
 export const getCache = <T = unknown>(id: string, time: number): T | false => {
     const item = localStorage.getItem(id)
     const curDate = new Date()
 
     if (item !== null) {
-        const parsedItem = JSON.parse(item) as CachedItem<T>
+        const parsedItem = JSON.parse(item) as CachedItemTypes<T>
         const cacheTime = parseInt(parsedItem.cached_at)
 
         if (cacheTime + time * 86400000 > curDate.getTime()) {

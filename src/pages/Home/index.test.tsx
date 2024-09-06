@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AppContext } from '../../context/AppContext/context'
 import { getPodcastList } from '../../helpers/ItunesAPI'
 
-import { AppContextProps } from '../../context/AppContext/types'
+import { AppContextTypes } from '../../context/AppContext/types'
 import { ReactElementWithChildrenTypes } from '../../types'
 import { PocastCardTypes } from '../../components/PodcastCard/types'
 
@@ -24,7 +24,7 @@ const mockAppContext = {
     toggleLoading: vi.fn()
 }
 
-const MockAppProvider = ({ loading, toggleLoading, children }: AppContextProps & ReactElementWithChildrenTypes) => {
+const MockAppProvider = ({ loading, toggleLoading, children }: AppContextTypes & ReactElementWithChildrenTypes) => {
     return (
         <AppContext.Provider value={{ loading, toggleLoading }}>
             {children}

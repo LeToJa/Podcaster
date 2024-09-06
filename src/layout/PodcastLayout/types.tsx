@@ -12,7 +12,7 @@ export interface PodcastAsideTypes {
     description: string
 }
 
-export interface PodcastEpisode {
+export interface PodcastEpisodeTypes {
     title: string
     content: string
     date: string
@@ -22,5 +22,5 @@ export interface PodcastEpisode {
 }
 
 export interface PodcastItemsTypes extends PodcastAsideTypes {
-    episodes: PodcastEpisode[]
+    episodes: PodcastEpisodeTypes[]
 }

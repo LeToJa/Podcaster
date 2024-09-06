@@ -1,9 +1,9 @@
 import { createContext, useState } from 'react'
 
 import { ReactElementWithChildrenTypes } from '../../types'
-import { AppContextProps } from './types'
+import { AppContextTypes } from './types'
 
-export const AppContext = createContext<AppContextProps | undefined>(undefined)
+export const AppContext = createContext<AppContextTypes | undefined>(undefined)
 
 export const AppProvider = ({ children }: ReactElementWithChildrenTypes) => {
     const [loading, setLoading] = useState<boolean>(true)

@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { BrowserRouter } from 'react-router-dom'
 
 import { AppContext } from '../../context/AppContext/context'
-import { AppContextProps } from '../../context/AppContext/types'
+import { AppContextTypes } from '../../context/AppContext/types'
 import { ReactElementWithChildrenTypes } from '../../types'
 import { PocastCardTypes } from '../PodcastCard/types'
 
@@ -14,7 +14,7 @@ const mockAppContext = {
     toggleLoading: vi.fn()
 }
 
-const MockAppProvider = ({ loading, toggleLoading, children }: AppContextProps & ReactElementWithChildrenTypes) => {
+const MockAppProvider = ({ loading, toggleLoading, children }: AppContextTypes & ReactElementWithChildrenTypes) => {
     return (
         <AppContext.Provider value={{ loading, toggleLoading }}>
             {children}
